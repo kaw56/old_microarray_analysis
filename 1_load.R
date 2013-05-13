@@ -1,15 +1,15 @@
 # load Brian's RMA_data
 
-setwd("/Users/oj/Documents/4-5-4 Arrays/eurydice_arrays/") 
+setwd("/Users/oj/Documents/Katherine/Eurydice genome/4-5-4 Arrays/") 
 library(ggplot2)
 library(plyr)
 library(reshape2)
 library(gridExtra)
 
 # dataframe of array data
-array_data <- read.table("For R/RMA_DATA.txt", header = TRUE)
+array_data <- read.table("eurydice_arrays/For R/RMA_DATA.txt", header = TRUE)
 
 # dataframe of contigs used for the array that have mitochondrial sequence
-mito_contigs <- read.table("454_contigs_for_arrays.fasta-RESULTS.txt", 
-                           col.names =c("contig_name", "gene", "start", "stop"))
+mito_contigs <- read.table("Array_Analysis/Using_Ep_blast_v2.2.1/Briancontigs/454_contigs_for_arrays.fastaRESULTS_summary.txt",
+                           col.names =c("contig_name", "gene", "evalue"))
 
