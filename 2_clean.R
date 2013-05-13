@@ -12,7 +12,7 @@ clean_mito <- subset(mito_contigs, gene!="rrnL")
 clean_mito <- droplevels(clean_mito)
 
 # select the mitochondrial contigs
-mito_arrays <- array.data[array.data$Probeset.ID %in% mito_contigs$contig_name,]
+mito_arrays <- array_data[array_data$Probeset.ID %in% mito_contigs$contig_name,]
 
 # add a gene name column
 mito_arrays$gene_name <- de_duplicate[mito_arrays$Probeset.ID %in% de_duplicate$contig_name, "gene"]
@@ -69,7 +69,7 @@ arrays.long$time <- factor(tidal_arrays.long$time,
 # collapse levels to give tidal data
 tidal <- arrays.long
 levels(tidal$time) <- c("HW", "LW", "HW", "LW")
-tidal.average <- ddply(tidal, c("Probeset.ID", "gene", "time"), 
+tidal_average <- ddply(tidal, c("Probeset.ID", "gene", "time"), 
                        summarise, 
                        mean_expression = mean(expression), 
                        sd = sd(expression), 
@@ -79,7 +79,7 @@ tidal.average <- ddply(tidal, c("Probeset.ID", "gene", "time"),
 # collapse to give circadian data
 circadian <- arrays.long
 levels(circadian$time) <- c("day", "night", "night", "day")
-circadian.average <- ddply(circadian, c("Probeset.ID", "time", "gene"), 
+circadian_average <- ddply(circadian, c("Probeset.ID", "time", "gene"), 
                            summarise, 
                            mean_expression = mean(expression), 
                            sd = sd(expression), 
@@ -87,7 +87,7 @@ circadian.average <- ddply(circadian, c("Probeset.ID", "time", "gene"),
                            se = sd/sqrt(n))
 
 # average biological replicates at time point (plus standard deviation and standard error)
-arrays.average <- ddply(arrays.long, c("Probeset.ID", "gene", "time"), 
+arrays_average <- ddply(arrays.long, c("Probeset.ID", "gene", "time"), 
                         summarise, 
                         mean_expression = mean(expression), 
                         sd = sd(expression), 
@@ -95,13 +95,13 @@ arrays.average <- ddply(arrays.long, c("Probeset.ID", "gene", "time"),
                         se = sd/sqrt(n))
 
 # filter out unchanging sequences tidal
-tidal.average.wide <-dcast(tidal.average, Probeset.ID + gene ~ time, value.var="mean_expression")
-tidal.change <- ddply(tidal.average.wide, c("Probeset.ID", "gene"), summarise, change = abs(HW - LW))
-tidal.filter_set <- tidal.change[ tidal.change$change > 0.5 ,]
-tidal.average.filtered <- tidal.average[tidal.average$Probeset.ID %in% tidal.filter_set$Probeset.ID,]
+tidal_average_wide <-dcast(tidal_average, Probeset.ID + gene ~ time, value.var="mean_expression")
+tidal_change <- ddply(tidal_average_wide, c("Probeset.ID", "gene"), summarise, change = abs(HW - LW))
+tidal_filter_set <- tidal_change[ tidal_change$change > 0.5 ,]
+tidal_average_filtered <- tidal_average[tidal_average$Probeset.ID %in% tidal_filter_set$Probeset.ID,]
 
 # filter out unchanging circadian
-circadian.average.wide <-dcast(circadian.average, Probeset.ID + gene ~ time, value.var="mean_expression")
-circadian.change <- ddply(circadian.average.wide, c("Probeset.ID", "gene"), summarise, change = abs(day - night))
-circadian.filter_set <-circadian.change[ circadian.change$change > 0.5 ,]
-circadian.average.filtered <- circadian.average[circadian.average$Probeset.ID %in% circadian.filter_set$Probeset.ID,]
+circadian_average_wide <-dcast(circadian_average, Probeset.ID + gene ~ time, value.var="mean_expression")
+circadian_change <- ddply(circadian_average_wide, c("Probeset.ID", "gene"), summarise, change = abs(day - night))
+circadian_filter_set <-circadian_change[ circadian_change$change > 0.5 ,]
+circadian_average_filtered <- circadian_average[circadian_average$Probeset.ID %in% circadian_filter_set$Probeset.ID,]

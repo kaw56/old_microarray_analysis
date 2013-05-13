@@ -7,7 +7,7 @@ library(reshape2)
 library(gridExtra)
 
 # dataframe of array data
-array.data <- read.table("For R/RMA_DATA.txt", header = TRUE)
+array_data <- read.table("For R/RMA_DATA.txt", header = TRUE)
 
 # dataframe of contigs used for the array that have mitochondrial sequence
 mito_contigs <- read.table("454_contigs_for_arrays.fasta-RESULTS.txt", 
