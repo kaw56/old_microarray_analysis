@@ -78,7 +78,7 @@ tidal_average <- ddply(tidal, c("Probeset.ID", "gene", "time"),
 
 # collapse to give circadian data
 circadian <- arrays.long
-levels(circadian$time) <- c("day", "night", "night", "day")
+levels(circadian$time) <- c("day", "day", "night", "night")
 circadian_average <- ddply(circadian, c("Probeset.ID", "time", "gene"), 
                            summarise, 
                            mean_expression = mean(expression), 
