@@ -3,19 +3,14 @@ library(reshape2)
 
 # clean up and reshape RMA_data so that ddply and ggplot can be used on it
 
-# remove duplicate contigs (some contigs have multiple hits to mitochondrial
-# sequence)
-de_duplicate <- subset(mito_contigs, !duplicated(mito_contigs$contig_name))
+# get the perfect hits
+perfect_hits <- subset(mito_contigs, evalue == 0)
 
-# remove the over represented rrnL ribosomal RNA 
-clean_mito <- subset(mito_contigs, gene!="rrnL")
-clean_mito <- droplevels(clean_mito)
-
-# select the mitochondrial contigs
-mito_arrays <- array_data[array_data$Probeset.ID %in% mito_contigs$contig_name,]
+# select the perfect hit mitochondrial contigs
+mito_arrays <- array_data[array_data$Probeset.ID %in% perfect_hits$contig_name,]
 
 # add a gene name column
-mito_arrays$gene_name <- de_duplicate[mito_arrays$Probeset.ID %in% de_duplicate$contig_name, "gene"]
+mito_arrays$gene_name <- perfect_hits[mito_arrays$Probeset.ID %in% perfect_hits$contig_name, "gene"]
 
 ##################
 # data reshaping #
