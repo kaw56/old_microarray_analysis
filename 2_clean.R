@@ -12,6 +12,8 @@ mito_arrays <- array_data[array_data$Probeset.ID %in% perfect_hits$contig_name,]
 # add a gene name column
 mito_arrays$gene_name <- perfect_hits[mito_arrays$Probeset.ID %in% perfect_hits$contig_name, "gene"]
 
+without_rrnl <- subset(mito_arrays, gene_name != "rrnL")
+
 ##################
 # data reshaping #
 ##################
