@@ -18,29 +18,26 @@ without_rrnl <- subset(mito_arrays, gene_name != "rrnL")
 # data reshaping #
 ##################
 
-# (seperate out each timepoint to average expression) (there is probably a loopy way to do this but r confuses and frightens me when it comes to loops)
+
+
+# seperate out time points 
 HW1 <- mito_arrays[, c(1, 2:4, 14)]
-names(HW1) <- c("Probeset.ID","rep1", "rep2", "rep3", "gene")
+HW1 <- renaming(HW1)
+
 LW1 <- mito_arrays[, c(1, 5:7, 14)]
-names(LW1) <- c("Probeset.ID","rep1", "rep2", "rep3", "gene")
+LW1 <-renaming(LW1) 
+
 HW2 <- mito_arrays[, c(1, 8:10, 14)]
-names(HW2) <- c("Probeset.ID","rep1", "rep2", "rep3", "gene")
+HW2 <- renaming(HW2) 
+
 LW2 <- mito_arrays[, c(1, 11:13, 14)]
-names(LW2) <- c("Probeset.ID","rep1", "rep2", "rep3", "gene")
+LW2 <- renaming(LW2) 
 
 # long replicate data
-HW1 <- melt(HW1, id.vars=c("Probeset.ID", "gene"), 
-            variable.name="replicate", 
-            value.name="expression")
-LW1 <- melt(LW1, id.vars=c("Probeset.ID", "gene"), 
-            variable.name="replicate", 
-            value.name="expression")
-HW2 <- melt(HW2, id.vars=c("Probeset.ID", "gene"), 
-            variable.name="replicate", 
-            value.name="expression")
-LW2 <- melt(LW2, id.vars=c("Probeset.ID", "gene"), 
-            variable.name="replicate", 
-            value.name="expression")
+HW1 <- make_long(HW1)
+LW1 <- make_long(LW1)
+HW2 <- make_long(HW2)
+LW2 <- make_long(LW2)
 
 # add time column
 HW1$time <- rep("HW1", length(HW1$Probeset.ID)) 
