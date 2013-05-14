@@ -55,7 +55,7 @@ arrays.long <- tidal_arrays.long[c("Probeset.ID", "gene", "time", "replicate", "
 
 # make time a factor
 arrays.long$time <- factor(tidal_arrays.long$time, 
-                           levels = c("HW1", "LW1", "HW2", "LW2"))
+                           levels = c("HW1", "LW2", "HW2", "LW1"))
 
 #############################
 # summarising and filtering #
