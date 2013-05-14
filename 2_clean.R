@@ -20,13 +20,16 @@ without_rrnl <- subset(mito_arrays, gene_name != "rrnL")
 
 # seperate out time points 
 HW1 <- mito_arrays[, c(1, 2:4, 14)]
-renaming(HW1)
+HW1 <- renaming(HW1)
+
 LW1 <- mito_arrays[, c(1, 5:7, 14)]
-renaming(LW1) 
+LW1 <-renaming(LW1) 
+
 HW2 <- mito_arrays[, c(1, 8:10, 14)]
-renaming(HW2) 
+HW2 <- renaming(HW2) 
+
 LW2 <- mito_arrays[, c(1, 11:13, 14)]
-renaming(LW2) 
+LW2 <- renaming(LW2) 
 
 # long replicate data
 HW1 <- melt(HW1, id.vars=c("Probeset.ID", "gene"), 
