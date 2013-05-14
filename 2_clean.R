@@ -53,9 +53,9 @@ tidal_arrays.long <- rbind(HW1, LW1, HW2, LW2)
 rm(HW1, LW1, HW2, LW2)
 
 # rearrange columns
-arrays.long <- tidal_arrays.long[c("Probeset.ID", "gene", "time", "replicate", "expression")]
+arrays_long <- tidal_arrays.long[c("Probeset.ID", "gene", "time", "replicate", "expression")]
 
 # make time a factor
-arrays.long$time <- factor(tidal_arrays.long$time, 
+arrays_long$time <- factor(tidal_arrays.long$time, 
                            levels = c("HW1", "LW2", "HW2", "LW1"))
 

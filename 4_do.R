@@ -6,8 +6,8 @@
 # summarising and filtering #
 #############################
 
-# collapse levels to give tidal data
-tidal <- arrays.long
+# collapse levels to give tidal and circdian data
+tidal <- arrays_long
 levels(tidal$time) <- c("HW", "LW", "HW", "LW")
 tidal_average <- ddply(tidal, c("Probeset.ID", "gene", "time"), 
                        summarise, 
@@ -16,8 +16,7 @@ tidal_average <- ddply(tidal, c("Probeset.ID", "gene", "time"),
                        n = length(expression), 
                        se = sd/sqrt(n))
 
-# collapse to give circadian data
-circadian <- arrays.long
+circadian <- arrays_long
 levels(circadian$time) <- c("day", "day", "night", "night")
 circadian_average <- ddply(circadian, c("Probeset.ID", "time", "gene"), 
                            summarise, 
