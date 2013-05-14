@@ -83,6 +83,13 @@ circadian_average <- ddply(circadian, c("Probeset.ID", "time", "gene"),
                            n = length(expression), 
                            se = sd/sqrt(n))
 
+circadian_ttest <- ddply(circadian, c("Probeset.ID", "gene"),
+                         summarise,
+                         pvalue = t.test(expression ~ time)$p.value)
+
+
+
+
 # average biological replicates at time point (plus standard deviation and standard error)
 arrays_average <- ddply(arrays.long, c("Probeset.ID", "gene", "time"), 
                         summarise, 
