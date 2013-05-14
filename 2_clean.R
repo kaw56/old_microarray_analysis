@@ -18,15 +18,15 @@ without_rrnl <- subset(mito_arrays, gene_name != "rrnL")
 # data reshaping #
 ##################
 
-# (seperate out each timepoint to average expression) (there is probably a loopy way to do this but r confuses and frightens me when it comes to loops)
+# seperate out time points 
 HW1 <- mito_arrays[, c(1, 2:4, 14)]
-names(HW1) <- c("Probeset.ID","rep1", "rep2", "rep3", "gene")
+renaming(HW1)
 LW1 <- mito_arrays[, c(1, 5:7, 14)]
-names(LW1) <- c("Probeset.ID","rep1", "rep2", "rep3", "gene")
+renaming(LW1) 
 HW2 <- mito_arrays[, c(1, 8:10, 14)]
-names(HW2) <- c("Probeset.ID","rep1", "rep2", "rep3", "gene")
+renaming(HW2) 
 LW2 <- mito_arrays[, c(1, 11:13, 14)]
-names(LW2) <- c("Probeset.ID","rep1", "rep2", "rep3", "gene")
+renaming(LW2) 
 
 # long replicate data
 HW1 <- melt(HW1, id.vars=c("Probeset.ID", "gene"), 
