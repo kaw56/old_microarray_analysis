@@ -9,28 +9,23 @@ levels(tidal$time) <- c("HW", "LW", "HW", "LW")
 circadian <- arrays_long
 levels(circadian$time) <- c("day", "day", "night", "night")
 
-circadian_ttest <- ddply(circadian, c("Probeset.ID", "gene"),
-                         summarise,
-                         pvalue = t.test(expression ~ time)$p.value)
 # average of the biological replicates at each time point 
 # (plus standard deviation and standard error)
 arrays_average <- summary_stats(arrays_long)
 circadian_average <- summary_stats(circadian)
 tidal_average <- summary_stats(tidal)
 
-
-
-# filter out unchanging sequences tidal
-tidal_average_wide <-dcast(tidal_average, Probeset.ID + gene ~ time, value.var="mean_expression")
-tidal_change <- ddply(tidal_average_wide, c("Probeset.ID", "gene"), summarise, change = abs(HW - LW))
-tidal_filter_set <- tidal_change[ tidal_change$change > 0.3 ,]
-tidal_average_filtered <- tidal_average[tidal_average$Probeset.ID %in% tidal_filter_set$Probeset.ID,]
+# t-test to find significant changes
+circadian_t_test <- perform_t_test(circadian)
+tidal_t_test <- perform_t_test(tidal)
 
 # filter out unchanging circadian
-circadian_average_wide <-dcast(circadian_average, Probeset.ID + gene ~ time, value.var="mean_expression")
-circadian_change <- ddply(circadian_average_wide, c("Probeset.ID", "gene"), summarise, change = abs(day - night))
-circadian_filter_set <-circadian_change[ circadian_change$change > 0.5 ,]
+circadian_filter_set <-circadian_t_test[circadian_t_test$pvalue < 0.1 ,]
 circadian_average_filtered <- circadian_average[circadian_average$Probeset.ID %in% circadian_filter_set$Probeset.ID,]
+
+# filter out unchanging sequences tidal
+tidal_filter_set <- tidal_t_test[ tidal_t_test$change < 0.2 ,]
+tidal_average_filtered <- tidal_average[tidal_average$Probeset.ID %in% tidal_filter_set$Probeset.ID,]
 
 
 

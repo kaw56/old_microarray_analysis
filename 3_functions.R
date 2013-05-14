@@ -13,6 +13,12 @@ summary_stats <- function(data.set) {
           se = sd/sqrt(n))
 }
 
+perform_t_test <- function(data.set) {
+    ddply(data.set, c("Probeset.ID", "gene"),
+          summarise,
+          pvalue = t.test(expression ~ time)$p.value)
+}
+
 # graph functions for microarray analysis
 
 BaseBarGraph <- function(data.set) {
