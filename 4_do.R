@@ -9,9 +9,6 @@ raw + ggtitle("Summary of mitochondrial representation on NimbleGen arrays") +
     ylab("Count")
 
 
-
-
-
 # line graph of each contig average over biological replicates at each timepoint
 #pdf("mitoexpression%03d.pdf", width = 8.3, height = 11.7, onefile = FALSE)
 
@@ -47,4 +44,3 @@ circa_filtered +
     ggtitle("Mitochondrial gene expression: circadian filtered for >0.5 expression change") + 
     geom_errorbar(aes(ymin=mean_expression-se, ymax=mean_expression+se), width=.1)
 
-#dev.off()
