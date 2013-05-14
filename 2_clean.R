@@ -18,6 +18,8 @@ without_rrnl <- subset(mito_arrays, gene_name != "rrnL")
 # data reshaping #
 ##################
 
+
+
 # seperate out time points 
 HW1 <- mito_arrays[, c(1, 2:4, 14)]
 HW1 <- renaming(HW1)
@@ -32,18 +34,10 @@ LW2 <- mito_arrays[, c(1, 11:13, 14)]
 LW2 <- renaming(LW2) 
 
 # long replicate data
-HW1 <- melt(HW1, id.vars=c("Probeset.ID", "gene"), 
-            variable.name="replicate", 
-            value.name="expression")
-LW1 <- melt(LW1, id.vars=c("Probeset.ID", "gene"), 
-            variable.name="replicate", 
-            value.name="expression")
-HW2 <- melt(HW2, id.vars=c("Probeset.ID", "gene"), 
-            variable.name="replicate", 
-            value.name="expression")
-LW2 <- melt(LW2, id.vars=c("Probeset.ID", "gene"), 
-            variable.name="replicate", 
-            value.name="expression")
+HW1 <- make_long(HW1)
+LW1 <- make_long(LW1)
+HW2 <- make_long(HW2)
+LW2 <- make_long(LW2)
 
 # add time column
 HW1$time <- rep("HW1", length(HW1$Probeset.ID)) 
