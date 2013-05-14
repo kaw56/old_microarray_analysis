@@ -1,7 +1,3 @@
-#############
-# filtering #
-#############
-
 #############################
 # summarising and filtering #
 #############################
@@ -9,36 +5,20 @@
 # collapse levels to give tidal and circdian data
 tidal <- arrays_long
 levels(tidal$time) <- c("HW", "LW", "HW", "LW")
-tidal_average <- ddply(tidal, c("Probeset.ID", "gene", "time"), 
-                       summarise, 
-                       mean_expression = mean(expression), 
-                       sd = sd(expression), 
-                       n = length(expression), 
-                       se = sd/sqrt(n))
 
 circadian <- arrays_long
 levels(circadian$time) <- c("day", "day", "night", "night")
-circadian_average <- ddply(circadian, c("Probeset.ID", "time", "gene"), 
-                           summarise, 
-                           mean_expression = mean(expression), 
-                           sd = sd(expression), 
-                           n = length(expression), 
-                           se = sd/sqrt(n))
 
 circadian_ttest <- ddply(circadian, c("Probeset.ID", "gene"),
                          summarise,
                          pvalue = t.test(expression ~ time)$p.value)
+# average of the biological replicates at each time point 
+# (plus standard deviation and standard error)
+arrays_average <- summary_stats(arrays_long)
+circadian_average <- summary_stats(circadian)
+tidal_average <- summary_stats(tidal)
 
 
-
-
-# average biological replicates at time point (plus standard deviation and standard error)
-arrays_average <- ddply(arrays.long, c("Probeset.ID", "gene", "time"), 
-                        summarise, 
-                        mean_expression = mean(expression), 
-                        sd = sd(expression), 
-                        n = length(expression), 
-                        se = sd/sqrt(n))
 
 # filter out unchanging sequences tidal
 tidal_average_wide <-dcast(tidal_average, Probeset.ID + gene ~ time, value.var="mean_expression")

@@ -1,5 +1,19 @@
-# graph functions for microarray analysis
 library(ggplot2)
+library(plyr)
+
+
+# filtering functions
+
+summary_stats <- function(data.set) {
+    ddply(data.set, c("Probeset.ID", "gene", "time"), 
+          summarise, 
+          mean_expression = mean(expression), 
+          sd = sd(expression), 
+          n = length(expression), 
+          se = sd/sqrt(n))
+}
+
+# graph functions for microarray analysis
 
 BaseBarGraph <- function(data.set) {
     ggplot(data.set, 
