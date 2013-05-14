@@ -12,9 +12,7 @@ raw + ggtitle("Summary of mitochondrial representation on NimbleGen arrays") +
 # line graph of each contig average over biological replicates at each timepoint
 #pdf("mitoexpression%03d.pdf", width = 8.3, height = 11.7, onefile = FALSE)
 
-mito_colour_palette <-  c("lightsteelblue", "chartreuse", "chocolate1", "darkmagenta",
-                     "navy", "turquoise", "indianred", "olivedrab1", "deepskyblue",
-                     "darkorchid", "firebrick", "gold", "gray86", "moccasin")
+mito_colour_palette <-  c("chartreuse", "darkmagenta","turquoise", "indianred", "purple", "deepskyblue","firebrick", "gold", "gray86", "moccasin")
     
 raw_timecourse <- BaseLineGraph(arrays_average) 
 raw_timecourse + scale_color_manual("gene", values = mito_colour_palette) +
