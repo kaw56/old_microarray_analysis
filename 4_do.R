@@ -2,20 +2,14 @@
 # graphs #
 ##########
 
-#pdf("mitocontigs_arrays.pdf", width = 8.3, height = 11.7)
 
 # Which genes are present (barplots of counts for each gene)
-raw <- BaseBarGraph(mito_contigs)
+raw <- BaseBarGraph(perfect_hits)
 raw + ggtitle("Summary of mitochondrial representation on NimbleGen arrays") + 
     ylab("Count")
 
-without_rrnL <- BaseBarGraph(clean_mito) 
-without_rrnL + 
-    ggtitle("Summary of mitochondrial representation on NimbleGen arrays (without rrnL)") + ylab("Count")
 
-grid.arrange(raw, without_rrnL)
 
-#dev.off()
 
 
 # line graph of each contig average over biological replicates at each timepoint
@@ -36,7 +30,7 @@ tidal + scale_color_manual("gene", values = mito_colour_palette) +
 
 
 # filtered graph: tidal (plus error bars)
-tidal_filtered <- BaseLineGraph(tidal.average.filtered)                          
+tidal_filtered <- BaseLineGraph(tidal_average_filtered)                          
 tidal_filtered + 
     ggtitle("Mitochondrial gene expression: tidal filtered for >0.5 expression change") +
     geom_errorbar(aes(ymin=mean_expression-se, ymax=mean_expression+se), width=.1)
