@@ -92,7 +92,7 @@ arrays_average <- ddply(arrays.long, c("Probeset.ID", "gene", "time"),
 # filter out unchanging sequences tidal
 tidal_average_wide <-dcast(tidal_average, Probeset.ID + gene ~ time, value.var="mean_expression")
 tidal_change <- ddply(tidal_average_wide, c("Probeset.ID", "gene"), summarise, change = abs(HW - LW))
-tidal_filter_set <- tidal_change[ tidal_change$change > 0.5 ,]
+tidal_filter_set <- tidal_change[ tidal_change$change > 0.3 ,]
 tidal_average_filtered <- tidal_average[tidal_average$Probeset.ID %in% tidal_filter_set$Probeset.ID,]
 
 # filter out unchanging circadian
