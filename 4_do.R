@@ -2,6 +2,8 @@
 # summarising and filtering #
 #############################
 
+## @knitr filter
+
 # collapse levels to give tidal and circdian data
 tidal <- arrays_long
 levels(tidal$time) <- c("HW", "LW", "HW", "LW")

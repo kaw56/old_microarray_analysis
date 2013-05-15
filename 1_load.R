@@ -1,5 +1,6 @@
 # load Brian's RMA_data
 
+## @knitr load
 library(ggplot2)
 library(plyr)
 library(reshape2)

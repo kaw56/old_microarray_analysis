@@ -1,3 +1,4 @@
+## @knitr func2
 library(ggplot2)
 library(plyr)
 

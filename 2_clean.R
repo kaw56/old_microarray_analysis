@@ -1,3 +1,4 @@
+## @knitr clean
 library(plyr)
 library(reshape2)
 

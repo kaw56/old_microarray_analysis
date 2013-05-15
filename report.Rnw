@@ -16,9 +16,36 @@ Contigs for this report were selected by looking for perfect matches against
 the \textit{Eurydice pulchra} mitochondrial genome. A perfect match is defined
 as having an e value of 0.0.
 
-load up the data 
-clean data
+<<load, echo=FALSE>>=
+@
 
+<<ext_code1, echo=FALSE>>=
+read_chunk('1.5_functions.R')
+@
+
+<<func1, echo=FALSE>>=
+@
+
+<<ext_code2, echo=FALSE>>=
+read_chunk('2_clean.R')
+@
+
+<<clean, echo=FALSE>>=
+@
+
+<<ext_code3, echo=FALSE>>=
+read_chunk('3_functions.R')
+@
+
+<<func2, echo=FALSE>>=
+@
+
+<<ext_code4, echo=FALSE>>=
+read_chunk('4_do.R')
+@
+
+<<filter, echo=FALSE>>=
+@
 list of included mitochondrial genes (and their contigs)
 
 Graph over whole time course (both with and without rrnL) ordered for circadian and ordered for tidal

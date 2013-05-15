@@ -1,5 +1,6 @@
 # reshaping functions
 
+## @knitr func1
 #rename
 renaming <- function(df) {
     names(df) <- c("Probeset.ID","rep1", "rep2", "rep3", "gene")
