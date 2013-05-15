@@ -57,12 +57,14 @@ print.xtable(perf_table_print, include.rownames = FALSE)
 # graphs #
 ##########
 
-## @knitr graphs
+## @knitr whole_time_course
 
 # line graph of each contig average over biological replicates at each timepoint
 raw_timecourse <- BaseLineGraph(arrays_average) 
 raw_timecourse + scale_color_brewer("gene", palette = "Set3") +
     ggtitle("Mitochondrial gene expression: all time points")
+
+## @knitr graphs
 
 # line graph for each contig: tidal
 tidal <- BaseLineGraph(tidal_average)    

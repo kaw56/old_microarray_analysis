@@ -3,7 +3,7 @@
 
 \begin{document}
 <<set-options, echo=FALSE, cache=FALSE>>=
-opts_chunk$set(echo = FALSE, fig.path = 'figure/', dev='tikz', fig.align='center', fig.show='hold')
+opts_chunk$set(echo = FALSE, fig.path = 'figure/', dev = 'png', fig.align='center', fig.show='hold')
 read_chunk('1_load.R')
 @
 \setcounter{secnumdepth}{0}
@@ -57,10 +57,13 @@ of 0. The rest of the matches are shown below.
 <<contig_table, results='asis'>>=
 @
 
+\section{}
+<<whole_time_course>>=
+@
+Can't actually show tidal time and circadian time on the same graph with these data
 
+\section{}
 
-%%Graph over whole time course (both with and without rrnL) ordered for circadian and ordered for tidal
-%%comment on not being able to reconcile those two 
 
 %%Used t test to compare mean expression for either HW vs LW or Day vs Night
 
