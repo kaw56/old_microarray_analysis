@@ -29,12 +29,31 @@ circadian_average_filtered <- circadian_average[circadian_average$Probeset.ID %i
 tidal_filter_set <- tidal_t_test[ tidal_t_test$change < 0.2 ,]
 tidal_average_filtered <- tidal_average[tidal_average$Probeset.ID %in% tidal_filter_set$Probeset.ID,]
 
-## @knitr graphs
+##########
+# tables #
+##########
+
+## @knitr contig_table
+
+#perfect hits table
+perf_table <- perfect_hits
+# drop the evalues
+perf_table$evalue <- NULL
+# reorder columns
+perf_table <- perf_table[c("gene", "contig_name")]
+# sort by gene
+perf_table <- perf_table[order(perf_table$gene),]
+
+perf_table_print <- xtable(perf_table,
+                            caption = "List of represented mitochondrial genes and their associated contigs")
+
+print.xtable(perf_table_print, include.rownames = FALSE)
 
 ##########
 # graphs #
 ##########
 
+## @knitr graphs
 
 # line graph of each contig average over biological replicates at each timepoint
 raw_timecourse <- BaseLineGraph(arrays_average) 

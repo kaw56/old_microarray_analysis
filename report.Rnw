@@ -47,7 +47,11 @@ read_chunk('4_do.R')
 
 <<filter>>=
 @
-list of included mitochondrial genes (and their contigs)
+
+<<contig_table, results='asis'>>=
+@
+
+
 
 Graph over whole time course (both with and without rrnL) ordered for circadian and ordered for tidal
 comment on not being able to reconcile those two 
