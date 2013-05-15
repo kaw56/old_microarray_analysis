@@ -1,11 +1,26 @@
 \documentclass{article}
 
 \begin{document}
-\title{Microarray Analysis, blast against \textit{Eurydice pulchra} mitochondrial genome}
-\author{Katherine White}
-\date{today}
+\title{Microarray Analysis}
+\date{\today}
 \maketitle
 
+perfect hit analysis (ie only contigs with perfect hits to mitochondrial genome have been included in the analysis)
+version of Perl script used to blast
+
+load up the data 
+clean data
+
+list of included mitochondrial genes (and their contigs)
+
+Graph over whole time course (both with and without rrnL) ordered for circadian and ordered for tidal
+comment on not being able to reconcile those two 
+
+Used t test to compare mean expression for either HW vs LW or Day vs Night
+
+table of p values one for tidal, one for circadian
+
+graphs of change
 
 
 \end{document}
