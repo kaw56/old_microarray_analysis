@@ -1,7 +1,9 @@
 \documentclass{article}
 
 \begin{document}
-\title{}
+\title{Microarray Analysis, blast against \textit{Eurydice pulchra} mitochondrial genome}
+\author{Katherine White}
+\date{today}
 \maketitle
 
 
