@@ -11,8 +11,10 @@ read_chunk('1_load.R')
 \date{\today}
 \maketitle
 
-perfect hit analysis (ie only contigs with perfect hits to mitochondrial genome have been included in the analysis)
-version of Perl script used to blast
+\section{Introduction}
+Contigs for this report were selected by looking for perfect matches against 
+the \textit{Eurydice pulchra} mitochondrial genome. A perfect match is defined
+as having an e value of 0.0.
 
 load up the data 
 clean data
