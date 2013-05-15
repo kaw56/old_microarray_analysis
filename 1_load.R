@@ -1,6 +1,5 @@
 # load Brian's RMA_data
 
-setwd("/Users/oj/Documents/Katherine/Eurydice genome/4-5-4 Arrays/") 
 library(ggplot2)
 library(plyr)
 library(reshape2)
