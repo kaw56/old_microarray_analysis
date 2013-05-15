@@ -7,6 +7,9 @@ library(reshape2)
 # get the perfect hits
 perfect_hits <- subset(mito_contigs, evalue == 0)
 
+#drop the rev com duplicates
+perfect_hits <- perfect_hits[!grepl("rc_contig\\w\\w\\w\\w\\w", perfect_hits$contig_name, perl = TRUE),]
+
 # select the perfect hit mitochondrial contigs
 mito_arrays <- array_data[array_data$Probeset.ID %in% perfect_hits$contig_name,]
 
@@ -49,6 +52,7 @@ LW2$time <- rep("LW2", length(HW1$Probeset.ID))
 #combine back to 1 dataframe
 tidal_arrays.long <- rbind(HW1, LW1, HW2, LW2)
 rm(HW1, LW1, HW2, LW2)
+
 
 # rearrange columns
 arrays_long <- tidal_arrays.long[c("Probeset.ID", "gene", "time", "replicate", "expression")]
