@@ -9,6 +9,7 @@ perfect_hits <- subset(mito_contigs, evalue == 0)
 
 #drop the rev com duplicates
 perfect_hits <- perfect_hits[!grepl("rc_contig\\w\\w\\w\\w\\w", perfect_hits$contig_name, perl = TRUE),]
+perf_hits_no_rrnL <- subset(perfect_hits, gene != "rrnL")
 
 # select the perfect hit mitochondrial contigs
 mito_arrays <- array_data[array_data$Probeset.ID %in% perfect_hits$contig_name,]

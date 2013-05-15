@@ -29,14 +29,18 @@ circadian_average_filtered <- circadian_average[circadian_average$Probeset.ID %i
 tidal_filter_set <- tidal_t_test[ tidal_t_test$change < 0.2 ,]
 tidal_average_filtered <- tidal_average[tidal_average$Probeset.ID %in% tidal_filter_set$Probeset.ID,]
 
+# number of rrnL hits
+rrnl_num <- nrow(perfect_hits) - nrow(perf_hits_no_rrnL)
+
 ##########
 # tables #
 ##########
 
 ## @knitr contig_table
 
+
 #perfect hits table
-perf_table <- perfect_hits
+perf_table <- perf_hits_no_rrnL
 # drop the evalues
 perf_table$evalue <- NULL
 # reorder columns
