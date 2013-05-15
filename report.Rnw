@@ -1,6 +1,12 @@
 \documentclass{article}
+\usepackage{fullpage}
 
 \begin{document}
+<<set-options, echo=FALSE, cache=FALSE>>=
+opts_chunk$set(echo = FALSE, fig.path = 'figure/', dev='tikz', fig.align='center', fig.show='hold')
+read_chunk('1_load.R')
+@
+
 \title{Microarray Analysis}
 \date{\today}
 \maketitle
