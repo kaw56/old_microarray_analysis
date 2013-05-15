@@ -5,6 +5,7 @@ library(ggplot2)
 library(plyr)
 library(reshape2)
 library(knitr)
+library(xtable)
 
 # dataframe of array data
 array_data <- read.table("RMA_DATA.txt", header = TRUE)
