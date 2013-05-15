@@ -5,6 +5,7 @@ library(ggplot2)
 library(plyr)
 library(reshape2)
 library(gridExtra)
+library(knitr)
 
 # dataframe of array data
 array_data <- read.table("eurydice_arrays/For R/RMA_DATA.txt", header = TRUE)
