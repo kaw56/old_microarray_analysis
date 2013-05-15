@@ -57,14 +57,14 @@ of 0. The rest of the matches are shown below.
 
 
 
-Graph over whole time course (both with and without rrnL) ordered for circadian and ordered for tidal
-comment on not being able to reconcile those two 
+%%Graph over whole time course (both with and without rrnL) ordered for circadian and ordered for tidal
+%%comment on not being able to reconcile those two 
 
-Used t test to compare mean expression for either HW vs LW or Day vs Night
+%%Used t test to compare mean expression for either HW vs LW or Day vs Night
 
-table of p values one for tidal, one for circadian
+%%table of p values one for tidal, one for circadian
 
-graphs of change
+%%graphs of change
 
 
 \end{document}
