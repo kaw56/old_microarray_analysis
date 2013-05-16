@@ -20,6 +20,18 @@ perform_t_test <- function(data.set) {
           pvalue = t.test(expression ~ time)$p.value)
 }
 
+# table function
+make_t_table <- function(data.set) {
+    # drop contig names
+    data.set$Probeset.ID <- NULL
+    # remove rrnL
+    data.set <- subset(data.set, gene != "rrnL")
+    # sort by gene name
+    data.set <- data.set[order(data.set$gene),]
+    return(data.set)
+}
+
+
 # graph functions for microarray analysis
 
 BaseBarGraph <- function(data.set) {

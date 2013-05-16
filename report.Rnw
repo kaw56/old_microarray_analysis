@@ -57,19 +57,32 @@ of 0. The rest of the matches are shown below.
 <<contig_table, results='asis'>>=
 @
 
-\section{}
+\clearpage
+\section{Whole Timecourse}
 <<whole_time_course>>=
 @
 Can't actually show tidal time and circadian time on the same graph with these data
 
-\section{}
+\clearpage
+\section{Circadian}
+<<circadian_contig_graph>>=
+@
 
+<<circa_t_test, results='asis'>>=
+@
 
-%%Used t test to compare mean expression for either HW vs LW or Day vs Night
+<<circa_filter_graph, fig.height=6, fig.width=5 >>=
+@
 
-%%table of p values one for tidal, one for circadian
+\clearpage
+\section{Tidal}
+<<tidal_contig_graph>>=
+@
 
-%%graphs of change
+<<tidal_t_test,results='asis'>>=
+@
+
+None of the changes in the perfect hits group are significant according to a Student t-test.
 
 
 \end{document}
