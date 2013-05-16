@@ -1,15 +1,24 @@
 \documentclass{article}
-\usepackage{fullpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\today}
+\chead{}
+\rhead{Perfect hit analysis}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
 
 \begin{document}
 <<set-options, echo=FALSE, cache=FALSE>>=
-opts_chunk$set(echo = FALSE, fig.path = 'figure/', dev = 'png', fig.align='center', fig.show='hold')
+opts_chunk$set(echo = FALSE, fig.path = 'figure/', dev = 'pdf', fig.align='center', fig.show='hold')
 read_chunk('1_load.R')
 @
 \setcounter{secnumdepth}{0}
 \title{Microarray Analysis}
 \author{}
-\date{\today}
+\date{}
 \maketitle
 
 \section{}
