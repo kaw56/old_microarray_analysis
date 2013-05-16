@@ -18,7 +18,7 @@ read_chunk('1_load.R')
 \setcounter{secnumdepth}{0}
 \title{Microarray Analysis}
 \author{}
-\date{}
+\date{\today}
 \maketitle
 
 \section{}
