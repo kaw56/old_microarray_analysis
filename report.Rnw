@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage{fancyhdr}
+\usepackage[a4paper]{geometry}
 \pagestyle{fancy}
 \lhead{\today}
 \chead{}
