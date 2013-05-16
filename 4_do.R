@@ -77,24 +77,20 @@ print.xtable(tidal_t_table_print, include.rownames = FALSE)
 
 # line graph of each contig average over biological replicates at each timepoint
 raw_timecourse <- BaseLineGraph(arrays_average) 
-raw_timecourse + scale_color_brewer("gene", palette = "Set3") +
-    ggtitle("Mitochondrial gene expression: all time points")
-
+raw_timecourse + scale_color_brewer("gene", palette = "Set3") 
 
 ## @knitr tidal_contig_graph
 
 # line graph for each contig: tidal
 tidal <- BaseLineGraph(tidal_average)    
-tidal + scale_color_brewer("gene", palette = "Set3") +
-    ggtitle("Mitochondrial gene expression: tidal time")
+tidal + scale_color_brewer("gene", palette = "Set3") 
 
 
 ## @knitr tidal_filter_graph
 
 # filtered graph: tidal (plus error bars)
 tidal_filtered <- BaseLineGraph(tidal_average_filtered)                          
-tidal_filtered  
-    ggtitle("Mitochondrial gene expression: tidal, significant change (p < 0.05)") +
+tidal_filtered +
     geom_errorbar(aes(ymin=mean_expression-se, ymax=mean_expression+se), width=.1)
 
 
@@ -102,15 +98,13 @@ tidal_filtered
 
 # line graph for each contig: circadian
 circa <- BaseLineGraph(circadian_average)
-circa + scale_color_brewer("gene", palette = "Set3") + 
-    ggtitle("Mitochondrial gene expression: circadian time") 
+circa + scale_color_brewer("gene", palette = "Set3")  
     
 ## @knitr circa_filter_graph
 
 # filtered graph: circadian
 circa_filtered <- BaseLineGraph(circadian_average_filtered)
 circa_filtered + 
-    ggtitle("Mitochondrial gene expression: circadian, significant change (p < 0.05)") + 
     geom_errorbar(aes(ymin=mean_expression-se, ymax=mean_expression+se), width=.1)
 
 ## @knitr
