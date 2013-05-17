@@ -4,18 +4,20 @@ library(reshape2)
 
 # clean up and reshape RMA_data so that ddply and ggplot can be used on it
 
-# get the perfect hits
-perfect_hits <- subset(mito_contigs, evalue == 0)
+# get highscoring hits (choose a cutoff)
+high_hits <- subset(mito_probes, evalue < 1e-25)
 
-#drop the rev com duplicates
-perfect_hits <- perfect_hits[!grepl("rc_contig\\w\\w\\w\\w\\w", perfect_hits$contig_name, perl = TRUE),]
-perf_hits_no_rrnL <- subset(perfect_hits, gene != "rrnL")
+# drop rrnL
+hi_hits_no_rrnL <- subset(high_hits, gene != "rrnL")
 
-# select the perfect hit mitochondrial contigs
-mito_arrays <- array_data[array_data$Probeset.ID %in% perfect_hits$contig_name,]
+# Find the contigs represented by high hitting probes
+mito_contigs <- key[key$ProbeID %in% high_hits$probe, ]
+
+# select the high hit mitochondrial contigs
+mito_arrays <- array_data[array_data$Probeset.ID %in% mito_contigs$PrimaryAccession,]
 
 # add a gene name column
-mito_arrays$gene_name <- perfect_hits[mito_arrays$Probeset.ID %in% perfect_hits$contig_name, "gene"]
+mito_arrays$gene_name <- mito_contigs[mito_arrays$Probeset.ID %in% mito_contigs$contig_name, "gene"]
 
 without_rrnl <- subset(mito_arrays, gene_name != "rrnL")
 
