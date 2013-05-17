@@ -30,25 +30,22 @@ tidal_filter_set <- tidal_t_test[ tidal_t_test$change < 0.2 ,]
 tidal_average_filtered <- tidal_average[tidal_average$Probeset.ID %in% tidal_filter_set$Probeset.ID,]
 
 # number of rrnL hits
-rrnl_num <- nrow(perfect_hits) - nrow(perf_hits_no_rrnL)
+rrnl_num <- nrow(high_hits) - nrow(hi_hits_no_rrnL)
 
 ##########
 # tables #
 ##########
 
-## @knitr contig_table
-perf_table <- perf_hits_no_rrnL
-# drop the evalues
-perf_table$evalue <- NULL
-# reorder columns
-perf_table <- perf_table[c("gene", "contig_name")]
-# sort by gene
-perf_table <- perf_table[order(perf_table$gene),]
+## @knitr gene_table
 
-perf_table_print <- xtable(perf_table,
-                            caption = "List of represented mitochondrial genes and their associated contigs")
+hi_table <- droplevels(mito_arrays$gene_name)
+hi_table_print <- summary(hi_table)
+hi_table_print <- as.data.frame(hi_table_print)
+hi_table_print <- cbind(levels(hi_table), hi_table_print)
+hi_table_print <- xtable(hi_table,
+                         caption = "Number of contigs that will give information about gene expression for each mitochondrial gene")
 
-print.xtable(perf_table_print, include.rownames = FALSE)
+print.xtable(hi_table_print, include.rownames = FALSE)
 
 ## @knitr circa_t_test
 circa_t_table <- circadian_t_test

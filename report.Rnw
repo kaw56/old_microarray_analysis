@@ -61,10 +61,8 @@ read_chunk('4_do.R')
 <<filter>>=
 @
 
-In perfect match group \Sexpr{rrnl_num} of the contigs match rrnL with an e value
-of 0. The rest of the matches are shown below.
 
-<<contig_table, results='asis'>>=
+<<gene_table, results='asis'>>=
 @
 
 \clearpage
