@@ -10,14 +10,17 @@ high_hits <- subset(mito_probes, evalue < 1e-25)
 # drop rrnL
 hi_hits_no_rrnL <- subset(high_hits, gene != "rrnL")
 
-# Find the contigs represented by high hitting probes
-mito_contigs <- key[key$ProbeID %in% high_hits$probe, ]
+# add contig name to high_hits
+high_hits$contig_name <- key[key$ProbeID %in% high_hits$probe, "PrimaryAccession"]
 
-# select the high hit mitochondrial contigs
-mito_arrays <- array_data[array_data$Probeset.ID %in% mito_contigs$PrimaryAccession,]
+# select the high hit mitochondrial contig expression data
+mito_arrays <- array_data[array_data$Probeset.ID %in% high_hits$contig_name,]
+
+# remove duplicate contig names (vaguely problematic)
+de_dup_hits <- subset(high_hits, !duplicated(high_hits$contig_name))
 
 # add a gene name column
-mito_arrays$gene_name <- mito_contigs[mito_arrays$Probeset.ID %in% mito_contigs$contig_name, "gene"]
+mito_arrays$gene_name <- de_dup_hits[mito_arrays$Probeset.ID %in% de_dup_hits$contig_name, "gene"]
 
 without_rrnl <- subset(mito_arrays, gene_name != "rrnL")
 
