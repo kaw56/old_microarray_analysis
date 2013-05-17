@@ -22,11 +22,11 @@ circadian_t_test <- perform_t_test(circadian)
 tidal_t_test <- perform_t_test(tidal)
 
 # filter out unchanging circadian
-circadian_filter_set <-circadian_t_test[circadian_t_test$pvalue < 0.1 ,]
+circadian_filter_set <-circadian_t_test[circadian_t_test$pvalue < 0.05 ,]
 circadian_average_filtered <- circadian_average[circadian_average$Probeset.ID %in% circadian_filter_set$Probeset.ID,]
 
 # filter out unchanging sequences tidal
-tidal_filter_set <- tidal_t_test[ tidal_t_test$change < 0.2 ,]
+tidal_filter_set <- tidal_t_test[ tidal_t_test$pvalue < 0.05 ,]
 tidal_average_filtered <- tidal_average[tidal_average$Probeset.ID %in% tidal_filter_set$Probeset.ID,]
 
 # number of rrnL hits
@@ -61,7 +61,7 @@ print.xtable(circa_t_table_print, include.rownames = FALSE)
 tidal_t_table <- tidal_t_test
 tidal_t_table <- make_t_table(tidal_t_table)
 
-tidal_t_table_print <- xtable(circa_t_table,
+tidal_t_table_print <- xtable(tidal_t_table,
                               caption = "P values of t-test comparing high tide and low tide mitochondrial gene expression")
 
 print.xtable(tidal_t_table_print, include.rownames = FALSE)
