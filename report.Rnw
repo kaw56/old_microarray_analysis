@@ -4,7 +4,7 @@
 \pagestyle{fancy}
 \lhead{\today}
 \chead{}
-\rhead{Perfect hit analysis}
+\rhead{Probe set analysis}
 \lfoot{}
 \cfoot{\thepage}
 \rfoot{}
@@ -17,17 +17,17 @@ opts_chunk$set(echo = FALSE, fig.path = 'figure/', dev = 'pdf', fig.align='cente
 read_chunk('1_load.R')
 @
 \setcounter{secnumdepth}{0}
-\title{Microarray Analysis}
+\title{Microarray analysis: Using the array probeset to assign genes to contigs}
 \author{}
 \date{\today}
 \maketitle
 
 \section{}
-This report was generated using data generated using Perl script blast\_annotated\_genome.pl version 2.2.1.
+This report uses data generated using Perl script blast\_annotated\_genome.pl version 2.2.1.
 
-Contigs for this report were selected by looking for perfect matches against 
-the \textit{Eurydice pulchra} mitochondrial genome. A perfect match is defined
-as having an e value of 0.0.
+Contigs for this report were selected by blasting the array probeset 
+(i.e. the oligos on the array that the sample cDNA binds to) against 
+the \textit{Eurydice pulchra} mitochondrial genome. These hits have e values of less than 1e-25.
 
 
 <<load>>=
