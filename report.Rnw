@@ -81,8 +81,8 @@ Can't actually show tidal time and circadian time on the same graph with these d
 <<circadian_contig_graph>>=
 @
 \end{figure}
-<<circa_t_test, results='asis'>>=
-@
+%%<<circa_t_test, results='asis'>>=
+%%@
 \begin{figure}[h!]
     \caption{Mitochondrial gene expression: circadian, significant change (p \textless 0.05)}
 <<circa_filter_graph, fig.height=6>>=
@@ -96,14 +96,15 @@ Can't actually show tidal time and circadian time on the same graph with these d
 <<tidal_contig_graph>>=
 @
 \end{figure}
-<<tidal_t_test,results='asis'>>=
-@
-%%\begin{figure}[h!]
-%%    \caption{Mitochondrial gene expression: tidal, significant change (p \textless 0.05)}
-%%<<tidal_filter_graph, fig.height=6>>=
+%%<<tidal_t_test,results='asis'>>=
 %%@
-%%\end{figure}
-None of the changes in the perfect hits group are significant according to a Student t-test.
+
+\begin{figure}[h!]
+    \caption{Mitochondrial gene expression: tidal, significant change (p \textless 0.05)}
+<<tidal_filter_graph>>=
+@
+\end{figure}
+
 \clearpage
 \section{Session information} 
 <<session_info>>=
