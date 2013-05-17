@@ -42,7 +42,7 @@ hi_table <- droplevels(mito_arrays$gene_name)
 hi_table_print <- summary(hi_table)
 hi_table_print <- as.data.frame(hi_table_print)
 hi_table_print <- cbind(levels(hi_table), hi_table_print)
-hi_table_print <- xtable(hi_table,
+hi_table_print <- xtable(hi_table_print,
                          caption = "Number of contigs that will give information about gene expression for each mitochondrial gene")
 
 print.xtable(hi_table_print, include.rownames = FALSE)
