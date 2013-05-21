@@ -114,7 +114,7 @@ tidal_filtered +
 
 # line graph for each contig: circadian
 circa <- BaseLineGraph(circadian_average)
-circa + scale_color_manual("gene", values = colour_palette))  
+circa + scale_color_manual("gene", values = colour_palette)  
     
 ## @knitr circa_filter_graph
 
