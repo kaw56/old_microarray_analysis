@@ -73,15 +73,29 @@ print.xtable(tidal_t_table_print, include.rownames = FALSE)
 
 ## @knitr whole_time_course
 
+colour_palette <- c("dodgerblue2","#E31A1C", # red
+                    "green4",
+                    "#6A3D9A", # purple
+                    "#FF7F00", # orange
+                    "black","gold1",
+                    "skyblue2","#FB9A99", # lt pink
+                    "palegreen2",
+                    "#CAB2D6", # lt purple
+                    "#FDBF6F", # lt orange
+                    "khaki2","gray70",
+                    "maroon","orchid1","deeppink1","blue1","steelblue4",
+                    "darkturquoise","green1","yellow4","yellow3",
+                    "darkorange4","brown")
+
 # line graph of each contig average over biological replicates at each timepoint
 raw_timecourse <- BaseLineGraph(arrays_average) 
-raw_timecourse + scale_color_brewer("gene", palette = "Set3") 
+raw_timecourse + scale_color_manual("gene", values = colour_palette) 
 
 ## @knitr tidal_contig_graph
 
 # line graph for each contig: tidal
 tidal <- BaseLineGraph(tidal_average)    
-tidal + scale_color_brewer("gene", palette = "Set3") 
+tidal + scale_color_manual("gene", values = colour_palette)
 
 
 ## @knitr tidal_filter_graph
@@ -96,7 +110,7 @@ tidal_filtered +
 
 # line graph for each contig: circadian
 circa <- BaseLineGraph(circadian_average)
-circa + scale_color_brewer("gene", palette = "Set3")  
+circa + scale_color_manual("gene", values = colour_palette))  
     
 ## @knitr circa_filter_graph
 
