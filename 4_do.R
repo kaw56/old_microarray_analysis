@@ -73,7 +73,23 @@ print.xtable(tidal_t_table_print, include.rownames = FALSE)
 
 ## @knitr whole_time_course
 
-colour_palette <- (rainbow_hcl(17,c = 60, l = 75))
+colour_palette <- c("#63C237",
+                    "#7472D7",
+                    "#C84C5A",
+                    "#A0602B",
+                    "#C36898",
+                    "#4F8FB9",
+                    "#CA56D5",
+                    "#D79931",
+                    "#D74C2B",
+                    "#CE3A8F",
+                    "#8565A1",
+                    "#3C7537",
+                    "#39B19E",
+                    "#D9D1FE",
+                    "#798B2D",
+                    "#B6BF36",
+                    "#5AC16F")
 
 # line graph of each contig average over biological replicates at each timepoint
 raw_timecourse <- BaseLineGraph(arrays_average) 
