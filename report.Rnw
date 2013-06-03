@@ -23,11 +23,9 @@ read_chunk('1_load.R')
 \maketitle
 
 \section{}
-This report was generated using data generated using Perl script blast\_annotated\_genome.pl version 2.2.1.
+This report was generated using data generated using Perl script blast\_annotated\_genome.pl version 3
 
-Contigs for this report were selected by looking for perfect matches against 
-the \textit{Eurydice pulchra} mitochondrial genome. A perfect match is defined
-as having an e value of 0.0.
+Contigs were selected using the Jetset approach outlined in (paper).
 
 
 <<load>>=
