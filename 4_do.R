@@ -36,6 +36,9 @@ rrnl_num_forward <- nrow(perfect_hits_forward) - nrow(perf_hits_forward_no_rrnL)
 # tables #
 ##########
 
+# looking at the represented genes
+probe_per_gene <- ddply(strong, "gene", summarise, n = length(score))
+
 ## @knitr contig_table_forward
 perf_table_forward <- perf_hits_forward_no_rrnL
 # drop the evalues
