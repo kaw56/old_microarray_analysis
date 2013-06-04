@@ -4,24 +4,22 @@ library(reshape2)
 
 # clean up and reshape RMA_data so that ddply and ggplot can be used on it
 
-# get the perfect hits
-perfect_hits <- subset(mito_contigs, evalue == 0)
+# selecting representative probes
+# finding probes that are not duplicated
+mito_contigs <- mito_contigs[!duplicated(mito_contigs$probe),]
 
-#drop the rev com duplicates
-perfect_hits_forward <- perfect_hits[!grepl("rc_contig\\w\\w\\w\\w\\w", perfect_hits$contig_name, perl = TRUE),]
-perf_hits_forward_no_rrnL <- subset(perfect_hits_forward, gene != "rrnL")
+# specificity
+strong <- mito_contigs[mito_contigs$score >= 48,]
+moderate <- mito_contigs[mito_contigs$score >= 32 & mito_contigs$score <= 47,]
+weak <- mito_contigs[mito_contigs$score < 32,]
 
-perfect_hits_reverse<- perfect_hits[grepl("rc_contig\\w\\w\\w\\w\\w", perfect_hits$contig_name, perl = TRUE),]
-perf_hits_reverse_no_rrnL <- subset(perfect_hits_reverse, gene != "rrnL")
+# Add contig name 
+strong$contig_name <- key[key$ProbeID %in% strong$probe, "PrimaryAccession"]
 
-# select the perfect hit mitochondrial contigs
-mito_arrays_forward <- array_data[array_data$Probeset.ID %in% perfect_hits_forward$contig_name,]
-mito_arrays_reverse <- array_data[array_data$Probeset.ID %in% perfect_hits_reverse$contig_name,]
-# add a gene name column
-mito_arrays_forward$gene_name <- perfect_hits[mito_arrays$Probeset.ID %in% perfect_hits_forward$contig_name, "gene"]
-mito_arrays_reverse$gene_name <- perfect_hits[mito_arrays$Probeset.ID %in% perfect_hits_reverse$contig_name, "gene"]
+mito_arrays <- array_data[array_data$Probeset.ID %in% strong$contig_name,]
 
-without_rrnl <- subset(mito_arrays, gene_name != "rrnL")
+# add gene name
+mito_arrays$gene <- strong[strong$contig_name %in% mito_arrays$Probeset.ID, "gene"]
 
 ##################
 # data reshaping #
