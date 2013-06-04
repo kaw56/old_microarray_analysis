@@ -1,0 +1,113 @@
+\documentclass{article}
+\usepackage{fancyhdr}
+\usepackage[a4paper]{geometry}
+\pagestyle{fancy}
+\lhead{\today}
+\chead{}
+\rhead{Perfect hit analysis}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+<<set-options, echo=FALSE, cache=FALSE>>=
+opts_chunk$set(echo = FALSE, fig.path = 'figure/', dev = 'pdf', fig.align='center', fig.show='hold')
+read_chunk('1_load.R')
+@
+\setcounter{secnumdepth}{0}
+\title{Microarray Analysis}
+\author{}
+\date{\today}
+\maketitle
+
+\section{}
+This report was generated using data generated using Perl script blast\_annotated\_genome.pl version 3
+
+Contigs were selected using the Jetset approach outlined in (paper).
+
+
+<<load>>=
+@
+
+<<ext_code1>>=
+read_chunk('1.5_functions.R')
+@
+
+<<func1>>=
+@
+
+<<ext_code2>>=
+read_chunk('2_clean.R')
+@
+
+<<clean>>=
+@
+
+<<ext_code3>>=
+read_chunk('3_functions.R')
+@
+
+<<func2>>=
+@
+
+<<ext_code4>>=
+read_chunk('4_do.R')
+@
+
+<<filter>>=
+@
+
+In perfect match group \Sexpr{rrnl_num} of the contigs match rrnL with an e value
+of 0. The rest of the matches are shown below.
+
+<<contig_table, results='asis'>>=
+@
+
+\clearpage
+\section{Whole Timecourse}
+\begin{figure}[h!]
+    \caption{Mitochondrial gene expression: all time points}
+<<whole_time_course>>=
+@
+\end{figure}
+Can't actually show tidal time and circadian time on the same graph with these data
+
+\clearpage
+\section{Circadian}
+\begin{figure}[h!]
+    \caption{Mitochondrial gene expression: circadian time}
+<<circadian_contig_graph>>=
+@
+\end{figure}
+<<circa_t_test, results='asis'>>=
+@
+\begin{figure}[h!]
+    \caption{Mitochondrial gene expression: circadian, significant change (p \textless 0.05)}
+<<circa_filter_graph, fig.height=6>>=
+@
+\end{figure}
+
+\clearpage
+\section{Tidal}
+\begin{figure}[h!]
+    \caption{Mitochondrial gene expression: tidal time}
+<<tidal_contig_graph>>=
+@
+\end{figure}
+<<tidal_t_test,results='asis'>>=
+@
+\begin{figure}[h!]
+    \caption{Mitochondrial gene expression: tidal, significant change (p \textless 0.05)}
+<<tidal_filter_graph, fig.height=6>>=
+@
+\end{figure}
+None of the changes in the perfect hits group are significant according to a Student t-test.
+\clearpage
+\section{Session information} 
+<<session_info>>=
+print(sessionInfo(), locale = FALSE)
+@
+
+\end{document}
