@@ -1,5 +1,7 @@
 # reshaping functions
 
+library(reshape2)
+
 ## @knitr func1
 #rename
 renaming <- function(df) {
