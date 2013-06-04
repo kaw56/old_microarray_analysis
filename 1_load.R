@@ -8,9 +8,9 @@ library(knitr)
 library(xtable)
 
 # dataframe of array data
-array_data <- read.table("RMA_DATA.txt", header = TRUE)
+array_data <- read.table("Data/RMA_DATA.txt", header = TRUE)
 
 # dataframe of contigs used for the array that have mitochondrial sequence
-mito_contigs <- read.table("454_contigs_for_arrays.fastaRESULTS_summary.txt",
-                           col.names =c("contig_name", "gene", "evalue"))
+mito_contigs <- read.table("Data/Array_probeset.txtRESULTS_summary.txt",
+                           col.names =c("probe", "gene", "score", "length", "start", "end"))
 
